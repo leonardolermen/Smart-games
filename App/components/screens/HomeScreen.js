@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, StyleSheet, ScrollView, TextInput } from 'react-native';
+import { View, StyleSheet, ScrollView, TextInput, Text } from 'react-native';
 import axios from 'axios'; 
 import GameItem from '../gameItem/GameItem';
 import Header from '../header/header';
@@ -31,22 +31,23 @@ const HomeScreen = () => {
   return (
     <View style={styles.container}>
       <Header />
-      <TextInput
-        style={styles.searchInput}
-        placeholder="Pesquisar..."
-        placeholderTextColor="#ffffff80"
-        onChangeText={text => setSearchTerm(text)} // Atualiza o estado do termo de pesquisa
-        value={searchTerm}
-      />
+      <View style={styles.searchContainer}>
+        <TextInput
+          style={styles.searchInput}
+          placeholder="Pesquisar..."
+          onChangeText={text => setSearchTerm(text)} // Atualiza o estado do termo de pesquisa
+          value={searchTerm}
+        />
+      </View>
       <ScrollView contentContainerStyle={styles.scrollView}>
         {filteredGames.map((game) => (
-          <GameItem
-            key={game.id}
-            imageSource={{ uri: game.imageLink }}
-            description={game.name}
-            price={game.price.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2})}
-
-          />
+          <View key={game.id}>
+            <GameItem
+              imageSource={{ uri: game.imageLink }}
+              description={game.name}
+              price={game.price.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
+            />
+          </View>
         ))}
       </ScrollView>
     </View>
@@ -62,15 +63,22 @@ const styles = StyleSheet.create({
     paddingHorizontal: 16,
     paddingTop: 16,
   },
+  searchContainer: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginBottom: 8,
+  },
   searchInput: {
     backgroundColor: '#484848',
     color: 'white',
     borderRadius: 8,
     paddingHorizontal: 12,
-    paddingVertical:12,
-    marginBottom: 16,
-    width: '90%',
-    alignSelf: 'center',
+    paddingVertical: 10,
+    width: '80%',
+  },
+  price: {
+    color: 'white',
+    marginTop: 4,
   },
 });
 
