@@ -4,6 +4,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -30,6 +31,7 @@ public class GamesController {
     }
 
     // mapp para obter todos os games no banco de dados
+    @CrossOrigin(origins = "exp://192.168.86.98:8081")
     @GetMapping("/get")
     public ResponseEntity<List<Game>> getAllGames(){
         List<Game> games = this.gameService.getAllGames();
