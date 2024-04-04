@@ -1,16 +1,15 @@
 import React, { useState, useEffect } from 'react';
-import { View, StyleSheet, ScrollView, TextInput, TouchableOpacity } from 'react-native';
+import { View, ScrollView, TextInput, TouchableOpacity } from 'react-native';
 import axios from 'axios'; 
 import GameItem from '../gameItem/GameItem';
 import Header from '../header/header';
-
+import styles from './HomeScreenStyles'; // Importe os estilos do arquivo local
 
 const HomeScreen = ({ navigation }) => {
   const [games, setGames] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
 
   useEffect(() => {
-    // Função para buscar os dados dos jogos da API
     const fetchGames = async () => {
       try {
         const response = await axios.get('http://192.168.86.98:8080/games/get');
@@ -20,11 +19,13 @@ const HomeScreen = ({ navigation }) => {
       }
     };
 
-    // Chame a função para buscar os dados dos jogos
     fetchGames();
   }, []);
 
-  // Função para filtrar os jogos com base no termo de pesquisa
+  const handleGameDetails = (game) => {
+    navigation.navigate('GamesScreen', { game });
+  };
+
   const filteredGames = games.filter(game =>
     game.name.toLowerCase().includes(searchTerm.toLowerCase())
   );
@@ -37,7 +38,7 @@ const HomeScreen = ({ navigation }) => {
           style={styles.searchInput}
           placeholder="Pesquisar..."
           placeholderTextColor={'white'}
-          onChangeText={text => setSearchTerm(text)} // Atualiza o estado do termo de pesquisa
+          onChangeText={text => setSearchTerm(text)}
           value={searchTerm}
         />
       </View>
@@ -45,7 +46,7 @@ const HomeScreen = ({ navigation }) => {
         {filteredGames.map((game) => (
           <TouchableOpacity
             key={game.id}
-            onPress={() => navigation.navigate('GameDetails', { game })}
+            onPress={() => handleGameDetails(game)}
           >
             <GameItem
               imageSource={{ uri: game.imageLink }}
@@ -59,33 +60,5 @@ const HomeScreen = ({ navigation }) => {
     </View>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#343434',
-  },
-  scrollView: {
-    paddingHorizontal: 16,
-    paddingTop: 16,
-  },
-  searchContainer: {
-    alignItems: 'center',
-    justifyContent: 'center',
-    marginBottom: 8,
-  },
-  searchInput: {
-    backgroundColor: '#484848',
-    color: 'white',
-    borderRadius: 8,
-    paddingHorizontal: 12,
-    paddingVertical: 10,
-    width: '80%',
-  },
-  price: {
-    color: 'white',
-    marginTop: 4,
-  },
-});
 
 export default HomeScreen;

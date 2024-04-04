@@ -1,12 +1,20 @@
-// Header.js
 import React from 'react';
-import { View, Text, TextInput, StyleSheet } from 'react-native';
+import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 
 const Header = () => {
+  const navigation = useNavigation();
+
+  const handlePress = () => {
+    navigation.navigate('Home');
+  };
+
   return (
-    <View style={styles.header}>
-      <Text style={styles.headerText}>Smart Games</Text>
-    </View>
+    <TouchableOpacity onPress={handlePress}>
+      <View style={styles.header}>
+        <Text style={styles.headerText}>Smart Games</Text>
+      </View>
+    </TouchableOpacity>
   );
 };
 

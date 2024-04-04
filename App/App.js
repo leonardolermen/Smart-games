@@ -1,14 +1,20 @@
-// App.js
-
 import React from 'react';
-import { StyleSheet, View } from 'react-native';
+import { StyleSheet } from 'react-native';
 import HomeScreen from './components/screens/HomeScreen';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+import GameScreen from './components/screens/GameScreen';
+
+const Stack = createStackNavigator();
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <HomeScreen />
-    </View>
+    <NavigationContainer>
+      <Stack.Navigator >
+        <Stack.Screen name="Home" component={HomeScreen} options={{ headerShown: false }} />
+        <Stack.Screen name="GamesScreen" component={GameScreen} options={{ headerShown: false }}/>
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 }
 
