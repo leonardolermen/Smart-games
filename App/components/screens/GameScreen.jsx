@@ -69,7 +69,9 @@ const GameScreen = ({ route }) => {
           <Text style={styles.buttonText}>Comprar Agora</Text>
         </TouchableOpacity>
 
-        
+        <TouchableOpacity style={styles.discountButton} onPress={applyDiscount}>
+          <Text style={styles.buttonText}>Aplicar Desconto</Text>
+        </TouchableOpacity>
         
       </ScrollView>
     </View>
