@@ -6,7 +6,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -38,9 +37,5 @@ public class GamesController {
         return new ResponseEntity<>(games, HttpStatus.OK);
     }
 
-    @GetMapping("/{name}")
-    public ResponseEntity<Game> getGamesByName(@PathVariable String name){
-        Game game = this.gameService.getByName(name);
-        return new ResponseEntity<>(game, HttpStatus.OK);
-    }
+    
 }
