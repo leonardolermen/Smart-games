@@ -1,44 +1,33 @@
 import React, { useState } from 'react';
-import { View, Text, Image, TouchableOpacity, Linking, ScrollView, Alert } from 'react-native';
+import { View, Text, Image, TouchableOpacity, Linking, ScrollView } from 'react-native';
 import Header from '../header/header';
 import styles from './GameScreenStyles'; // Importe os estilos do arquivo local
-import * as Permissions from 'expo-permissions'; // Importe expo-permissions
+
+
 
 const GameScreen = ({ route }) => {
   const { name, description, imageLink, price, platform, stores } = route.params.game;
   const [discountedPrice, setDiscountedPrice] = useState(price);
 
-   // função para salvar os endereços das lojas
-   const getStoreAddress = (store) => {
+  // função para salvar os endereços das lojas
+  const getStoreAddress = (store) => {
     switch (store) {
-      case 'Loja_Iguatemi':
+      case 'Loja Iguatemi':
         return 'Alameda Rio Negro, 111 - Alphaville Industrial, Barueri - SP';
-      case 'Loja_União':
+      case 'Loja União':
         return 'Av. dos Autonomistas, 1400 - Vila Yara, Osasco - SP';
-      case 'Loja_Tamboré':
+      case 'Loja Tamboré':
         return 'Av. Piracema, 669 - Tamboré, Santana de Parnaíba - SP';
       default:
         return '';
     }
   };
 
-  // função para abrir o Maps
+  // Função para abrir o Maps
   const openGoogleMaps = (store) => {
-    const address = encodeURIComponent(getStoreAddress(store));
-    const url = `https://www.google.com/maps/search/?api=1&query=${address}`;
+    const adress = getStoreAddress(store)
+    const url = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(adress)}`;
     Linking.openURL(url);
-  };
-
-  // Função para solicitar permissão de câmera
-  const askCameraPermission = async () => {
-    try {
-      const { status } = await Permissions.askAsync(Permissions.CAMERA);
-      if (status !== 'granted') {
-        Alert.alert('Permissão de Câmera', 'A permissão de câmera é necessária para escanear QRCode.');
-      }
-    } catch (error) {
-      console.error('Erro ao solicitar permissão de câmera:', error);
-    }
   };
 
   // Função para aplicar desconto
@@ -69,12 +58,12 @@ const GameScreen = ({ route }) => {
           <View style={styles.storeButtonsContainer}>
             {stores.map((store, index) => (
               <TouchableOpacity key={index} onPress={() => openGoogleMaps(store)}>
-                <Text style={styles.storeButton}>{store.name}</Text>
+                <Text style={styles.storeButton}>{store}</Text>
               </TouchableOpacity>
             ))}
           </View>
         </View>
-        
+
         <TouchableOpacity style={styles.buyButton} onPress={handleBuyNow}>
           <Text style={styles.buttonText}>Comprar Agora</Text>
         </TouchableOpacity>
@@ -83,13 +72,9 @@ const GameScreen = ({ route }) => {
           <Text style={styles.buttonText}>Aplicar Desconto</Text>
         </TouchableOpacity>
 
-        <TouchableOpacity style={styles.qrCodeButton} onPress={askCameraPermission}>
-          <Text style={styles.buttonText}>Ler QRCode</Text>
-        </TouchableOpacity>
-        
       </ScrollView>
     </View>
-  );
-};
+  )
+}
 
 export default GameScreen;
