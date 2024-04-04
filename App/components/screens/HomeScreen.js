@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { View, StyleSheet, ScrollView, TextInput, Text } from 'react-native';
+import { View, StyleSheet, ScrollView, TextInput, TouchableOpacity } from 'react-native';
 import axios from 'axios'; 
 import GameItem from '../gameItem/GameItem';
 import Header from '../header/header';
 
-const HomeScreen = () => {
+
+const HomeScreen = ({ navigation }) => {
   const [games, setGames] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
 
@@ -35,19 +36,24 @@ const HomeScreen = () => {
         <TextInput
           style={styles.searchInput}
           placeholder="Pesquisar..."
+          placeholderTextColor={'white'}
           onChangeText={text => setSearchTerm(text)} // Atualiza o estado do termo de pesquisa
           value={searchTerm}
         />
       </View>
       <ScrollView contentContainerStyle={styles.scrollView}>
         {filteredGames.map((game) => (
-          <View key={game.id}>
+          <TouchableOpacity
+            key={game.id}
+            onPress={() => navigation.navigate('GameDetails', { game })}
+          >
             <GameItem
               imageSource={{ uri: game.imageLink }}
               description={game.name}
               price={game.price.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
+              platforms={game.platform}
             />
-          </View>
+          </TouchableOpacity>
         ))}
       </ScrollView>
     </View>
