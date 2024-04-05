@@ -23,6 +23,7 @@ public class GamesController {
     private GameService gameService;
     
     // mapp para adicionar os games ao banco de dados
+    @CrossOrigin(origins = {"exp://192.168.86.98:8081", "http://localhost:3000"} )
     @PostMapping("/post")
     public ResponseEntity<Game> postGame(@RequestBody GamesDTO game){
          Game newGame = gameService.postGame(game);

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { View, Text, Image, TouchableOpacity, Linking, ScrollView } from 'react-native';
 import Header from '../header/header';
 import styles from './GameScreenStyles'; 
-
+import axios from 'axios';
 
 
 const GameScreen = ({ route }) => {
@@ -33,14 +33,25 @@ const GameScreen = ({ route }) => {
   // Função para aplicar desconto
   const applyDiscount = () => {
     const discount = 0.2; // 20% de desconto
-    const newPrice = price * (1 - discount);
-    setDiscountedPrice(newPrice);
+    const Price = price * (1 - discount);
+    setDiscountedPrice(Price);
   };
 
   // Função para simular a compra
   const handleBuyNow = () => {
-    // Aqui você pode adicionar a lógica para a compra, como redirecionar para a página de pagamento, etc.
-    alert('Compra realizada com sucesso!');
+    axios.post('http://192.168.86.98:8080/purchases/post', {
+      gameName: name,
+      value: price
+    })
+    .then(response => {
+      console.log('Compra realizada com sucesso:', response.data);
+      alert('Compra realizada com sucesso:');
+    })
+    .catch(error => {
+      console.error('Erro ao realizar compra:', error);
+      alert('Erro ao realizar compra:');
+
+    });
   };
 
   return (

@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
 import Col from 'react-bootstrap/Col';
+import axios from 'axios';
 import '../styles/card.css';
 
 const GameCard = ({ game }) => {
@@ -21,6 +22,23 @@ const GameCard = ({ game }) => {
         return '';
     }
   };
+
+  const handleBuyNowClick = () => {
+    axios.post('http://localhost:8080/purchases/post', {
+      gameName: game.name,
+      value: game.price
+    })
+    .then(response => {
+      console.log('Compra realizada com sucesso:', response.data);
+      alert('Compra realizada com sucesso:');
+    })
+    .catch(error => {
+      console.error('Erro ao realizar compra:', error);
+      alert('Erro ao realizar compra:');
+
+    });
+  };
+
 
   // Function to open Maps
   const handleStoreClick = (store) => {
@@ -58,7 +76,7 @@ const GameCard = ({ game }) => {
           </div>
 
           <div className="card-btn">
-            <Button variant="primary">Comprar Agora</Button>
+            <Button variant="primary" onClick={handleBuyNowClick}>Comprar Agora</Button>
           </div>
         </Card.Body>
       </Card>
