@@ -30,7 +30,7 @@ public class GamesController {
     }
 
     // mapp para obter todos os games no banco de dados
-    @CrossOrigin(origins = "exp://192.168.86.98:8081")
+    @CrossOrigin(origins = {"exp://192.168.86.98:8081", "http://localhost:3000"} )
     @GetMapping("/get")
     public ResponseEntity<List<Game>> getAllGames(){
         List<Game> games = this.gameService.getAllGames();

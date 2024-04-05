@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { View, Text, Image, TouchableOpacity, Linking, ScrollView } from 'react-native';
 import Header from '../header/header';
-import styles from './GameScreenStyles'; // Importe os estilos do arquivo local
+import styles from './GameScreenStyles'; 
 
 
 

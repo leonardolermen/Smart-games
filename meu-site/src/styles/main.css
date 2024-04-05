@@ -1,0 +1,23 @@
+*{
+    color: #fff;
+}
+.mainGames{
+    margin-left: 50px;
+    margin-top: 50px;
+    color: #fff;
+}
+.cards{
+    margin-top: 50px;
+    width: 18rem;
+}
+
+.cardsContainer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between; 
+}
+
+.cards {
+    width: 20rem; 
+    margin-bottom: 20px;
+}

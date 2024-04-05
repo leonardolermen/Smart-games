@@ -1,0 +1,54 @@
+
+
+.card {
+    background-color: #f8f9fa;
+    border: 1px solid #dee2e6;
+    border-radius: 5px;
+  }
+  
+  .card-body {
+    padding: 20px;
+    background-color: #161616;
+  }
+  
+  .card-title {
+    font-size: 1.2rem;
+    font-weight: bold;
+    background-color: #161616;
+    
+
+    
+  }
+  
+  .card-text {
+    font-size: 1rem;
+    background-color: #161616;
+    
+  }
+  
+  .card-img-top {
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+  }
+  
+  .card-btn {
+    margin-top: 10px;
+    background-color: #161616;
+  }
+  
+  .card-btn button {
+    width: 100%;
+    border: #fff;
+    background-color: green;
+  }
+  
+  .store-btn-container {
+    display: flex;
+    flex-wrap: wrap;
+    background-color: #161616;
+  }
+  
+  .store-btn {
+    margin-right: 5px;
+    margin-bottom: 5px;
+  }
