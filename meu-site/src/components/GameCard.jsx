@@ -23,6 +23,7 @@ const GameCard = ({ game }) => {
     }
   };
 
+  //função para postar uma compra
   const handleBuyNowClick = () => {
     axios.post('http://localhost:8080/purchases/post', {
       gameName: game.name,

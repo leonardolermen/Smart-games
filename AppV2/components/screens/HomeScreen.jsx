@@ -3,7 +3,7 @@ import { View, ScrollView, TextInput, TouchableOpacity } from 'react-native';
 import axios from 'axios'; 
 import GameItem from '../gameItem/GameItem';
 import Header from '../header/header';
-import styles from './HomeScreenStyles'; // Importe os estilos do arquivo local
+import styles from './HomeScreenStyles'; 
 
 const HomeScreen = ({ navigation }) => {
   const [games, setGames] = useState([]);
@@ -12,7 +12,7 @@ const HomeScreen = ({ navigation }) => {
   useEffect(() => {
     const fetchGames = async () => {
       try {
-        const response = await axios.get('http://192.168.86.98:8080/games/get');
+        const response = await axios.get('http://192.168.86.98:8080/games/get'); // chmamar os dados da api
         setGames(response.data);
       } catch (error) {
         console.error('Erro ao buscar os dados dos jogos:', error);
@@ -22,10 +22,12 @@ const HomeScreen = ({ navigation }) => {
     fetchGames();
   }, []);
 
+  // passa os dados do game para a proxima tela e navega a ela
   const handleGameDetails = (game) => {
     navigation.navigate('GamesScreen', { game });
   };
 
+  // filta os games pelo nome
   const filteredGames = games.filter(game =>
     game.name.toLowerCase().includes(searchTerm.toLowerCase())
   );
