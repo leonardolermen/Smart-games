@@ -2,9 +2,9 @@
 Criar um site e um app para a Smart Games onde os clientes possam consultar os jogos de seu interesse e efetuar a compra online ou na loja.
 
 ## 🚀 Começando
-Essas instruções permitirão que você obtenha uma cópia do projeto em operação na sua máquina local para fins de teste. Ter o MongoDB, JS e Java installado. Importe o arquivo dos games para o MongoDB em uma tabela "table_games".
-A URL da API: http://localhost:8080/purchases/(get ou post) e http://localhost:8080/games/(get ou post).
-Para testar a API no mobile usando o expo vc deve substituir o 'http://localhost:8080/' pelo ip do seu computador exemplo 'http://192.168.86.98:8080/games/get'.
+* Essas instruções permitirão que você obtenha uma cópia do projeto em operação na sua máquina local para fins de teste. Ter o MongoDB, JS e Java installado. Importe o arquivo dos games para o MongoDB em uma tabela "table_games".
+* A URL da API: http://localhost:8080/purchases/(get ou post) e http://localhost:8080/games/(get ou post).
+* Para testar a API no mobile usando o expo vc deve substituir o 'http://localhost:8080/' pelo ip do seu computador exemplo 'http://192.168.86.98:8080/games/get'.
 
 ## 🛠️ Construído com
  * Spring(https://start.spring.io/) - O framework Backend usado. 
