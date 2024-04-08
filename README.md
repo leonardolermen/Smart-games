@@ -14,7 +14,7 @@ Criar um site e um app para a Smart Games onde os clientes possam consultar os j
  * MongoDB(https://www.mongodb.com/pt-br) - Usado para bando de Dados.
   
 ## 📋 Ideias e considerações
-Dois games estavam com o link da capa expirado (se não me engao era o watch dogs 2 e o gow3) então tomei liberdade para pegar a capa de outro site.
+Dois games estavam com o link da capa expirado (se não me engano era o watch dogs 2 e o gow3) então tomei liberdade para pegar a capa de outro site.
 
 Com um pouco mais de tempo seria super interessante poder criar um sitema de login e registro para ter uma controle melhor para ter compras salvas de cada cliente ou mesmo ter uma pagina de perfil.
 
